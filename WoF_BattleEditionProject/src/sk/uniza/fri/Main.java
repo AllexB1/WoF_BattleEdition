@@ -1,4 +1,7 @@
 package sk.uniza.fri;
+
+import sk.uniza.fri.game.Game;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Alex-PC
@@ -9,6 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         //TODO Write your code
-        System.out.println("Hello world");
+        Game game = new Game();
+        game.play();
     }
 }
