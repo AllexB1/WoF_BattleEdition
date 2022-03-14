@@ -23,6 +23,11 @@ public class BattleMap {
         mainHall.setExits(kitchen, bossRoom, darkRoom);
         darkRoom.setExits(bossRoom, null, null);
         bossRoom.setExits(null, null, null);
+
+        // Nastavenie nepriatelov v miestnostiach
+        kitchen.putEnemiesIntoRoom();
+        darkRoom.putEnemiesIntoRoom();
+        bossRoom.putEnemiesIntoRoom();
         return camp;  // startovacia Room hry
     }
 }

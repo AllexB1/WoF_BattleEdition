@@ -1,5 +1,11 @@
 package sk.uniza.fri.maps;
 
+import sk.uniza.fri.enemy.Skeleton;
+import sk.uniza.fri.enemy.ICreature;
+
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * 14. 3. 2022 - 12:47
  *
@@ -11,6 +17,10 @@ public class Room {
     private Room middleExit;
     private Room rightExit;
 
+    // List of enemies in room
+    private ArrayList<ICreature> enemiesInRoom;
+
+
     /**
      * Vytvori miestnost popis ktorej je v parametrom.
      * Po vytvoreni miestnost nema ziadne vychody. Popis miesnost strucne
@@ -20,6 +30,15 @@ public class Room {
      */
     public Room(String popis) {
         this.description = popis;
+    }
+
+    public void putEnemiesIntoRoom() {
+        Random random = new Random();
+        enemiesInRoom = new ArrayList<ICreature>();
+        int numOfEnemies = random.nextInt(1, 3);
+        for (int i = 0; i < numOfEnemies; i++) {
+            enemiesInRoom.add((ICreature)new Skeleton(100, 10, 1));
+        }
     }
 
     /**
@@ -56,6 +75,10 @@ public class Room {
 //
 //        return this.description + sb.toString();
 //    }
+
+    public ArrayList<ICreature> getEnemiesInRoom() {
+        return this.enemiesInRoom;
+    }
 
     public String getDescription() {
         return description;

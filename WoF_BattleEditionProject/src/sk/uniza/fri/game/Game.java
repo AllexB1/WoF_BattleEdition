@@ -2,6 +2,7 @@ package sk.uniza.fri.game;
 
 import sk.uniza.fri.maps.BattleMap;
 import sk.uniza.fri.maps.Room;
+import sk.uniza.fri.player.Player;
 import sk.uniza.fri.userInteraction.Command;
 import sk.uniza.fri.userInteraction.Parser;
 
@@ -13,12 +14,16 @@ import sk.uniza.fri.userInteraction.Parser;
 public class Game {
     private final Parser parser;
     private final BattleMap battleMap;
+    private final BattleManager battleManager;
     private Room currentRoom;
+    private Player player;
 
     public Game() {
         this.battleMap = new BattleMap();
         this.currentRoom = this.battleMap.createMap(this);
         this.parser = new Parser();
+        this.battleManager = new BattleManager();
+        this.player = new Player(100, 10, 5);
     }
 
     public void play() {
@@ -29,6 +34,14 @@ public class Game {
         do {
             Command command = this.parser.getCommandFromInput();
             isEnd = this.performCommand(command);
+            // Start battle if there are enemies in room
+            if (!isEnd && this.currentRoom.getEnemiesInRoom() != null) {
+                isEnd = battleManager.startFight(this.player, this.currentRoom);
+            }
+            if (!isEnd) {
+                player.printInfo();
+                this.printRooms();
+            }
         } while (!isEnd);
     }
 
