@@ -19,6 +19,11 @@ public class Player implements ICreature {
         this.armor = armor;
     }
 
+    @Override
+    public float getHealth() {
+        return this.health;
+    }
+
     public void doDamage(ICreature creature) {
         // TODO
         // calculate damage
@@ -31,14 +36,14 @@ public class Player implements ICreature {
 
         if (totalDamage > 0) {
             this.health -= totalDamage;
-            System.out.println("Player took " + totalDamage + " from attack.");
+            //System.out.println("Player took " + totalDamage + " from attack.");
         }
     }
 
     public void printInfo() {
         System.out.println("-----------------------");
         System.out.println("Player current stats: ");
-        System.out.println("Health: " + this.health);
+        System.out.print("Health: " + this.health);
         System.out.print(" Damage: " + this.damage);
         System.out.print(" Armor: " + this.armor);
         System.out.println();
@@ -49,4 +54,6 @@ public class Player implements ICreature {
     public boolean isDead() {
         return this.health <= 0;
     }
+
+
 }

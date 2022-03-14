@@ -7,7 +7,11 @@ package sk.uniza.fri.enemy;
  */
 public interface ICreature {
 
+    float BASE_DAMAGE = 10;
+    float BASE_ARMOR = 1;
+
     void takeDamage(float damage);
     void doDamage(ICreature creature);
     boolean isDead();
+    float getHealth();
 }

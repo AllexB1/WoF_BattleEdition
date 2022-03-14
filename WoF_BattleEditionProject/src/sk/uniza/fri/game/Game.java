@@ -23,7 +23,7 @@ public class Game {
         this.currentRoom = this.battleMap.createMap(this);
         this.parser = new Parser();
         this.battleManager = new BattleManager();
-        this.player = new Player(100, 10, 5);
+        this.player = new Player(100, 10, 8);
     }
 
     public void play() {

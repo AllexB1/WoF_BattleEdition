@@ -22,8 +22,9 @@ public class BattleManager {
             return player.isDead();
         }
 
-
+        int round = 0;
         while (!enemiesInRoom.isEmpty()) {
+            round += 1;
             for (ICreature creature : enemiesInRoom) {
                 if (creature.isDead()) {
                     continue;
@@ -36,6 +37,7 @@ public class BattleManager {
                 }
                 player.doDamage(creature);
                 creature.doDamage(player);
+                this.printBattleSummaryAfterRound(enemiesInRoom, round);
             }
             enemiesInRoom = this.removeDeadEnemies(enemiesInRoom);
         }
@@ -52,4 +54,18 @@ public class BattleManager {
         return enemiesAlive;
     }
 
+    private void printBattleSummaryAfterRound(ArrayList<ICreature> enemies, int round) {
+        System.out.println("Round " + round + ": ");
+        int index = 0;
+        for (ICreature enemy : enemies) {
+            if(!enemy.isDead()) {
+                System.out.print("Enemy " + index + " has " + enemy.getHealth() + " HP, ");
+            } else {
+                System.out.print("Enemy " + index + " is dead, ");
+            }
+            index += 1;
+        }
+        System.out.println();
+        System.out.println("--------------------------------");
+    }
 }

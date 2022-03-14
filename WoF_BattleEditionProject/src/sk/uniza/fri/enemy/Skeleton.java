@@ -1,5 +1,7 @@
 package sk.uniza.fri.enemy;
 
+import java.util.Random;
+
 /**
  * 14. 3. 2022 - 12:47
  *
@@ -7,16 +9,23 @@ package sk.uniza.fri.enemy;
  */
 public class Skeleton implements ICreature {
 
+    private static final float MIN_HP = 10;
+    private static final float MAX_HP = 40;
+    private final String name = "Skeleton";
     private float health;
     private float damage;
     private float armor;
 
-    public Skeleton(float health, float damage, float armor) {
-        this.health = health;
-        this.damage = damage;
-        this.armor = armor;
+    public Skeleton() {
+        Random random = new Random();
+        this.health = random.nextFloat(MIN_HP, MAX_HP);
+        this.damage = ICreature.BASE_DAMAGE;
+        this.armor = ICreature.BASE_ARMOR;
     }
 
+    public float getHealth() {
+        return this.health;
+    }
     // TODO
     public void doDamage(ICreature creature) {
         creature.takeDamage(this.damage);
@@ -28,7 +37,7 @@ public class Skeleton implements ICreature {
 
         if (totalDamage > 0) {
             this.health -= totalDamage;
-            System.out.println("Skeleton took " + totalDamage + " from attack.");
+           // System.out.print(this.name + " took " + totalDamage + " from attack. ");
         }
     }
 
