@@ -40,9 +40,28 @@ public class Game {
             }
             if (!isEnd) {
                 player.printInfo();
-                this.printRooms();
+                if (!this.isLastRoom(currentRoom)) {
+                    this.printRooms();
+                } else {
+                    System.out.println("YOU WON!");
+                    isEnd = true;
+                }
             }
         } while (!isEnd);
+    }
+
+    // TODO rework. This is not optimal
+    private boolean isLastRoom(Room currentRoom) {
+        if (currentRoom.getLeftExit() == null) {
+            if (currentRoom.getMiddleExit() == null) {
+                if (currentRoom.getRightExit() == null) {
+                    // no more exits, we are at the end
+                    return true;
+                }
+            }
+        }
+        // still has exits
+        return false;
     }
 
 
