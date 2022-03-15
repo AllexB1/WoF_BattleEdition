@@ -25,7 +25,7 @@ public class Player implements ICreature {
         this.health = health;
         this.damage = damage;
         this.armor = armor;
-
+        // create empty inventory
         inventory = new ArrayList<IItem>();
     }
 
@@ -87,10 +87,14 @@ public class Player implements ICreature {
     }
 
     // Inventory
+    // Add item to inventory
+    // any checks related to size of inventory or compatibility of items
+    // should be made here
     public void addItemToInventory(IItem item) {
         this.inventory.add(item);
     }
 
+    // prints items with description to console
     public void showInventory() {
         System.out.println("Items in inventory:");
         for (IItem item : inventory) {
@@ -108,6 +112,10 @@ public class Player implements ICreature {
         return damageModifier;
     }
 
+    // Set modifiers (HP, damage, armor, etc...)
+    // modifiers are used to modify base values of health, damage, armor without
+    // changing it's value
+    // set damage modifier
     public void setDamageModifier(float damageModifier) {
         this.damageModifier = damageModifier;
     }
