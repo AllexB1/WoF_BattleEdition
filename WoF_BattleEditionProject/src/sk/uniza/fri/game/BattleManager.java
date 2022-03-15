@@ -3,8 +3,6 @@ package sk.uniza.fri.game;
 import sk.uniza.fri.enemy.ICreature;
 import sk.uniza.fri.maps.Room;
 import sk.uniza.fri.player.Player;
-
-import javax.xml.stream.events.EndElement;
 import java.util.ArrayList;
 
 /**
@@ -58,7 +56,7 @@ public class BattleManager {
         System.out.println("Round " + round + ": ");
         int index = 0;
         for (ICreature enemy : enemies) {
-            if(!enemy.isDead()) {
+            if (!enemy.isDead()) {
                 String formatted = String.format("Enemy %d has %.2f HP, ", index, enemy.getHealth());
                 System.out.print(formatted);
             } else {
