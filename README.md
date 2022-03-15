@@ -1,7 +1,7 @@
 # WoF_BattleEdition
  World of Fri - Battle edition is a game, where you have to fight through dark rooms of building to reach end boss restraining you from leaving alive. 
 
- ***Hint: Game is in "Master" branch, donwload zip or clone repository in top right corner***
+ ***Hint: Game is in "main" branch, donwload zip or clone repository in top right corner***
  ## Ideas
  Some ideas which we will add as we develop our game.
  ### NPC
