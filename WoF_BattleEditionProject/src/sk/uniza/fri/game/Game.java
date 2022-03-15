@@ -1,5 +1,7 @@
 package sk.uniza.fri.game;
 
+import sk.uniza.fri.items.AdrenalineInjection;
+import sk.uniza.fri.items.StoneOfHealth;
 import sk.uniza.fri.maps.BattleMap;
 import sk.uniza.fri.maps.Room;
 import sk.uniza.fri.player.Player;
@@ -24,6 +26,8 @@ public class Game {
         this.parser = new Parser();
         this.battleManager = new BattleManager();
         this.player = new Player(100, 10, 8);
+        this.player.addItemToInventory(new StoneOfHealth());
+        this.player.addItemToInventory(new AdrenalineInjection());
     }
 
     public void play() {

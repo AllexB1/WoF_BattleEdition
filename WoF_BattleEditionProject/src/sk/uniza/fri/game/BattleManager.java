@@ -20,9 +20,13 @@ public class BattleManager {
             return player.isDead();
         }
         System.out.println(" [" + enemiesInRoom.size() + " nepriatelov v miestnosti]");
+        // start of the fight
         int round = 0;
         while (!enemiesInRoom.isEmpty()) {
+            // start of the round
             round += 1;
+            player.useItems();
+            // during round
             for (ICreature creature : enemiesInRoom) {
                 if (creature.isDead()) {
                     continue;
@@ -36,9 +40,12 @@ public class BattleManager {
                 player.doDamage(creature);
                 creature.doDamage(player);
             }
+            // end of the round
             this.printBattleSummaryAfterRound(enemiesInRoom, round, player);
             enemiesInRoom = this.removeDeadEnemies(enemiesInRoom);
         }
+        // end of fight
+        player.resetModifiers();
         return player.isDead();
     }
 
