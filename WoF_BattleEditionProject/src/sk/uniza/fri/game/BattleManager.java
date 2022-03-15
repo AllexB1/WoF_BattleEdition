@@ -19,7 +19,7 @@ public class BattleManager {
         if (enemiesInRoom == null) {
             return player.isDead();
         }
-
+        System.out.println(" [" + enemiesInRoom.size() + " nepriatelov v miestnosti]");
         int round = 0;
         while (!enemiesInRoom.isEmpty()) {
             round += 1;
@@ -35,8 +35,8 @@ public class BattleManager {
                 }
                 player.doDamage(creature);
                 creature.doDamage(player);
-                this.printBattleSummaryAfterRound(enemiesInRoom, round);
             }
+            this.printBattleSummaryAfterRound(enemiesInRoom, round, player);
             enemiesInRoom = this.removeDeadEnemies(enemiesInRoom);
         }
         return player.isDead();
@@ -52,15 +52,16 @@ public class BattleManager {
         return enemiesAlive;
     }
 
-    private void printBattleSummaryAfterRound(ArrayList<ICreature> enemies, int round) {
+    private void printBattleSummaryAfterRound(ArrayList<ICreature> enemies, int round, Player player) {
         System.out.println("Round " + round + ": ");
+        System.out.println(String.format("[Player] %.2f HP", player.getHealth()));
         int index = 0;
         for (ICreature enemy : enemies) {
             if (!enemy.isDead()) {
-                String formatted = String.format("Enemy %d has %.2f HP, ", index, enemy.getHealth());
+                String formatted = String.format("[Enemy %d] has %.2f HP, ", index, enemy.getHealth());
                 System.out.print(formatted);
             } else {
-                System.out.print("Enemy " + index + " is dead, ");
+                System.out.print("[Enemy " + index + "] is dead, ");
             }
             index += 1;
         }

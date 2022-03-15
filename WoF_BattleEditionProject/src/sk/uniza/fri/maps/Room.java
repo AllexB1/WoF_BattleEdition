@@ -35,7 +35,7 @@ public class Room {
     public void putEnemiesIntoRoom() {
         Random random = new Random();
         enemiesInRoom = new ArrayList<ICreature>();
-        int numOfEnemies = random.nextInt(1, 3);
+        int numOfEnemies = random.nextInt(1, 5);
         for (int i = 0; i < numOfEnemies; i++) {
             enemiesInRoom.add((ICreature)new Skeleton());
         }
