@@ -6,11 +6,25 @@
  Some ideas which we will add as we develop our game.
  ### NPC
  - Merchants
+   - items
+   - buffs
+   - negative effets
  - Buffs
+   - temporary
+   - permanent
  - ??
+ ### Rooms
+- with enemies
+- empty
+- with npc
+- trapped rooms
+- boss room
  ### Items
  - Passive items
  - Usable items
+   - fight
+   - round
+   - one time use
  ### Enemies
  - Special type
  - Random chance of spawning
