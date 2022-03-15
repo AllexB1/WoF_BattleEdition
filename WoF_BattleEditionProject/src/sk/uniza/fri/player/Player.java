@@ -90,6 +90,14 @@ public class Player implements ICreature {
     public void addItemToInventory(IItem item) {
         this.inventory.add(item);
     }
+
+    public void showInventory() {
+        System.out.println("Items in inventory:");
+        for (IItem item : inventory) {
+            System.out.println(item.getName() + ": " + item.getDescription());
+        }
+    }
+
     // check if player is dead
     public boolean isDead() {
         return this.health <= 0;

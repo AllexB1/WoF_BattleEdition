@@ -24,8 +24,6 @@ public class StoneOfHealth implements IItem, IUsable {
 
     @Override
     public void use(Player player) {
-        System.out.print("Before heal " + player.getHealth() + " ");
         player.heal(this.HEALING_AMOUNT);
-        System.out.println("After " + player.getHealth());
     }
 }

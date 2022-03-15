@@ -20,7 +20,7 @@ public class AdrenalineInjection implements IItem, IUsable {
 
     @Override
     public String getDescription() {
-        return String.format("For next fight player has + %d damage!", this.DAMAGE_MODIFIER);
+        return String.format("For next fight player has + %.0f damage!", this.DAMAGE_MODIFIER);
     }
 
     @Override
