@@ -1,6 +1,7 @@
 package sk.uniza.fri.player;
 
 import sk.uniza.fri.enemy.ICreature;
+import sk.uniza.fri.items.AdrenalineInjection;
 import sk.uniza.fri.items.IItem;
 import sk.uniza.fri.items.IUsable;
 
@@ -55,7 +56,6 @@ public class Player implements ICreature {
         // TODO
         // calculate damage
         float dmg =  this.damage + this.getDamageModifier();
-        System.out.println("Dealing " + dmg);
         creature.takeDamage(this.damage + this.getDamageModifier());
     }
 
@@ -92,6 +92,14 @@ public class Player implements ICreature {
     // should be made here
     public void addItemToInventory(IItem item) {
         this.inventory.add(item);
+    }
+
+    // check if item is in inventory
+    // remove item
+    public void removeItemFromInventory(IItem item) {
+        if (this.inventory.contains(item)) {
+            this.inventory.remove(item);
+        }
     }
 
     // prints items with description to console

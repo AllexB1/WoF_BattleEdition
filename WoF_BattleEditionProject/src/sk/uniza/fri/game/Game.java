@@ -85,6 +85,9 @@ public class Game {
             case "go":
                 this.moveToRoom(command);
                 return false;
+            case "showInventory":
+                this.player.showInventory();
+                return false;
             case "end":
                 return this.endGame(command);
             default:

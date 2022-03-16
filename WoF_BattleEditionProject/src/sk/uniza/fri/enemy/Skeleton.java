@@ -9,8 +9,8 @@ import java.util.Random;
  */
 public class Skeleton implements ICreature {
 
-    private static final float MIN_HP = 10;
-    private static final float MAX_HP = 40;
+    private static final float MIN_HP = 20;
+    private static final float MAX_HP = 80;
     private final String name = "Skeleton";
     private float health;
     private float damage;
