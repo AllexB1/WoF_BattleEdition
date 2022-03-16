@@ -5,6 +5,7 @@ import sk.uniza.fri.player.Player;
 public class BananOfDamage implements IItem, IUsable {
 
     private static final float DAMAGE_MODIFIER = 5;
+    private boolean wasUsed = false;
     @Override
     public String getName() {
         return "Banan of Damage";
@@ -17,6 +18,18 @@ public class BananOfDamage implements IItem, IUsable {
 
     @Override
     public void use(Player player) {
-        player.addDamageModifier();
+        if (!wasUsed) {
+            player.addDamageModifier(this.DAMAGE_MODIFIER);
+            System.out.println("Used banana of damage");
+            this.wasUsed = true;
+        }
     }
 }
+
+
+
+
+
+
+
+

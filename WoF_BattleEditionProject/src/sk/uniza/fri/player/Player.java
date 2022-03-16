@@ -1,6 +1,7 @@
 package sk.uniza.fri.player;
 
 import sk.uniza.fri.enemy.ICreature;
+import sk.uniza.fri.items.BananOfDamage;
 import sk.uniza.fri.items.IItem;
 import sk.uniza.fri.items.IUsable;
 
@@ -76,6 +77,12 @@ public class Player implements ICreature {
             if (item instanceof IUsable) {
                 ((IUsable)item).use(this);
             }
+        }
+    }
+
+    public void addItemToInventory(BananOfDamage bananOfDamage) {
+        if (bananOfDamage != null) {
+            this.inventory.add(bananOfDamage);
         }
     }
 }
