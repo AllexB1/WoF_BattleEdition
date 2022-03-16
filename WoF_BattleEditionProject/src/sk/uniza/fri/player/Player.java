@@ -1,6 +1,10 @@
 package sk.uniza.fri.player;
 
 import sk.uniza.fri.enemy.ICreature;
+import sk.uniza.fri.items.IItem;
+import sk.uniza.fri.items.IUsable;
+
+import java.util.ArrayList;
 
 /**
  * 14. 3. 2022 - 12:47
@@ -12,6 +16,12 @@ public class Player implements ICreature {
     private float health;
     private float damage;
     private float armor;
+
+    // Inventory
+    private ArrayList<IItem> inventory = new ArrayList<>();
+
+    //modifier
+    private float damageModifier;
 
     public Player(float health, float damage, float armor) {
         this.health = health;
@@ -55,5 +65,28 @@ public class Player implements ICreature {
         return this.health <= 0;
     }
 
+    // Modifiers for damage, health and armor
+    public void addDamageModifier(float damageModifier) {
+        this.damageModifier = damageModifier;
+    }
 
+    public void useItems() {
+        // TODO
+        for (IItem item: this.inventory) {
+            if (item instanceof IUsable) {
+                ((IUsable)item).use(this);
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

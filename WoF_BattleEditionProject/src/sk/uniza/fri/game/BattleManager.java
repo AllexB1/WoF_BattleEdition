@@ -22,7 +22,9 @@ public class BattleManager {
         System.out.println(" [" + enemiesInRoom.size() + " nepriatelov v miestnosti]");
         int round = 0;
         while (!enemiesInRoom.isEmpty()) {
+            // start of round
             round += 1;
+            player.useItems();
             for (ICreature creature : enemiesInRoom) {
                 if (creature.isDead()) {
                     continue;
