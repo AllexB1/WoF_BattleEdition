@@ -18,7 +18,7 @@ public class BananOfDamage implements IItem, IUsable {
 
     @Override
     public void use(Player player) {
-        if (!wasUsed) {
+        if (!this.wasUsed) {
             player.addDamageModifier(this.DAMAGE_MODIFIER);
             System.out.println("Used banana of damage");
             this.wasUsed = true;

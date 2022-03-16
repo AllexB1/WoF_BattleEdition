@@ -38,7 +38,7 @@ public class Player implements ICreature {
     public void doDamage(ICreature creature) {
         // TODO
         // calculate damage
-        creature.takeDamage(this.damage);
+        creature.takeDamage(this.damage + this.damageModifier);
     }
 
     // Take damage from other creatures of effects
@@ -84,6 +84,10 @@ public class Player implements ICreature {
         if (bananOfDamage != null) {
             this.inventory.add(bananOfDamage);
         }
+    }
+
+    public void heal(float healthAdd) {
+        this.health += healthAdd;
     }
 }
 
