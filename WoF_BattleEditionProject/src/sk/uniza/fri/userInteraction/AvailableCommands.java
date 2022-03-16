@@ -8,7 +8,7 @@ package sk.uniza.fri.userInteraction;
 public class AvailableCommands {
     // konstantne pole nazvov prikazov
     private static final String[] VALID_COMMANDS = {
-            "go", "end", "help", "showInventory"
+            "go", "end", "help", "show"
     };
 
     /**

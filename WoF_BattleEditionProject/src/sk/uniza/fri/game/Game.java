@@ -85,8 +85,8 @@ public class Game {
             case "go":
                 this.moveToRoom(command);
                 return false;
-            case "showInventory":
-                this.player.showInventory();
+            case "show":
+                this.player.show(command);
                 return false;
             case "end":
                 return this.endGame(command);
@@ -161,7 +161,7 @@ public class Game {
         System.out.println("World of FRI - Battle Edition je bojova verzia byvalej adventuri.");
         System.out.println("Cielom hry je prebojovat sa na koniec pevnosti a porazit bossa.");
         System.out.println("Zadaj 'help' ak potrebujes pomoc.");
-        System.out.println("Prikazy: 'go' 'help' 'end'");
+        System.out.println("Prikazy: 'go' 'help' 'end' 'show'");
         System.out.println();
         this.printRooms();
     }

@@ -1,9 +1,9 @@
 package sk.uniza.fri.player;
 
 import sk.uniza.fri.enemy.ICreature;
-import sk.uniza.fri.items.AdrenalineInjection;
 import sk.uniza.fri.items.IItem;
 import sk.uniza.fri.items.IUsable;
+import sk.uniza.fri.userInteraction.Command;
 
 import java.util.ArrayList;
 
@@ -103,10 +103,28 @@ public class Player implements ICreature {
     }
 
     // prints items with description to console
-    public void showInventory() {
-        System.out.println("Items in inventory:");
-        for (IItem item : inventory) {
-            System.out.println(item.getName() + ": " + item.getDescription());
+    public void show(Command command) {
+        if (!command.hasParameter()) {
+            return;
+        }
+        boolean foundItem = false;
+        if (command.getParameter().equals("inventory")) {
+            System.out.println("Items in inventory:");
+            for (IItem item : inventory) {
+                System.out.println(item.getName() + ": " + item.getDescription());
+            }
+        } else {
+            for (IItem item : inventory) {
+                String itemNameWithoutWhiteSpace = item.getName().replaceAll(" ", "").toLowerCase();
+                if (itemNameWithoutWhiteSpace.equals(command.getParameter().toLowerCase())) {
+                    System.out.println(String.format("Item [%s] : %s", item.getName(), item.getDescription()));
+                    foundItem = true;
+                    break;
+                }
+            }
+        }
+        if (!foundItem) {
+            System.out.println("No item with name [" + command.getParameter() + "] in inventory");
         }
     }
 
