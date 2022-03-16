@@ -107,13 +107,14 @@ public class Player implements ICreature {
         if (!command.hasParameter()) {
             return;
         }
-        boolean foundItem = false;
+
         if (command.getParameter().equals("inventory")) {
             System.out.println("Items in inventory:");
             for (IItem item : inventory) {
                 System.out.println(item.getName() + ": " + item.getDescription());
             }
         } else {
+            boolean foundItem = false;
             for (IItem item : inventory) {
                 String itemNameWithoutWhiteSpace = item.getName().replaceAll(" ", "").toLowerCase();
                 if (itemNameWithoutWhiteSpace.equals(command.getParameter().toLowerCase())) {
@@ -122,9 +123,9 @@ public class Player implements ICreature {
                     break;
                 }
             }
-        }
-        if (!foundItem) {
-            System.out.println("No item with name [" + command.getParameter() + "] in inventory");
+            if (!foundItem) {
+                System.out.println("No item with name [" + command.getParameter() + "] in inventory");
+            }
         }
     }
 
