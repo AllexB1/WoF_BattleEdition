@@ -11,8 +11,8 @@ public class Inventory {
     private ArrayList<IItem> inventoryConsumable;
 
     public Inventory() {
-        inventoryConsumable = new ArrayList<IItem>();
-        inventoryUsable = new ArrayList<IItem>();
+        this.inventoryConsumable = new ArrayList<IItem>();
+        this.inventoryUsable = new ArrayList<IItem>();
     }
 
     public void addItem(IItem item) {
@@ -21,18 +21,58 @@ public class Inventory {
         }
 
         if (item instanceof IUsable) {
-            inventoryUsable.add(item);
+            this.inventoryUsable.add(item);
         } else {
-            inventoryConsumable.add(item);
+            this.inventoryConsumable.add(item);
+        }
+    }
+
+    public void removeItem(IItem item) {
+        if (item == null) {
+            return;
+        }
+
+        if (this.inventoryUsable.contains(item)) {
+            this.inventoryUsable.remove(item);
+            return;
+        }
+
+        if (this.inventoryConsumable.contains(item)) {
+            this.inventoryConsumable.remove(item);
+        }
+    }
+
+    public void showItems() {
+        System.out.println("Usable items");
+        for (IItem item : this.inventoryUsable) {
+            String itemText = String.format("[%s] : %s", item.getName(), item.getDescription());
+            System.out.println(itemText);
+        }
+        System.out.println("Consumables");
+        for (IItem item : this.inventoryConsumable) {
+            String itemText = String.format("[%s] : %s", item.getName(), item.getDescription());
+            System.out.println(itemText);
         }
     }
 
 
-
-
-
-
-
-
-
+    public IItem[] getUsableItems() {
+        return (IItem[])this.inventoryUsable.toArray();
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

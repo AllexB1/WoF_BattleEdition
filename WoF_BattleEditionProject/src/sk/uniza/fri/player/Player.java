@@ -5,7 +5,6 @@ import sk.uniza.fri.items.BananOfDamage;
 import sk.uniza.fri.items.IItem;
 import sk.uniza.fri.items.IUsable;
 
-import java.util.ArrayList;
 
 /**
  * 14. 3. 2022 - 12:47
@@ -19,7 +18,8 @@ public class Player implements ICreature {
     private float armor;
 
     // Inventory
-    private ArrayList<IItem> inventory = new ArrayList<>();
+    //private ArrayList<IItem> inventory = new ArrayList<>();
+    private Inventory inventory = new Inventory();
 
     //modifier
     private float damageModifier;
@@ -73,7 +73,7 @@ public class Player implements ICreature {
 
     public void useItems() {
         // TODO
-        for (IItem item: this.inventory) {
+        for (IItem item: this.inventory.getUsableItems()) {
             if (item instanceof IUsable) {
                 ((IUsable)item).use(this);
             }
@@ -82,12 +82,16 @@ public class Player implements ICreature {
 
     public void addItemToInventory(BananOfDamage bananOfDamage) {
         if (bananOfDamage != null) {
-            this.inventory.add(bananOfDamage);
+            this.inventory.addItem(bananOfDamage);
         }
     }
 
     public void heal(float healthAdd) {
         this.health += healthAdd;
+    }
+
+    public Inventory getInventory() {
+        return this.inventory;
     }
 }
 

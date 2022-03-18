@@ -85,9 +85,24 @@ public class Game {
                 return false;
             case "end":
                 return this.endGame(command);
+            case "show":
+                this.show(command);
             default:
                 return false;
         }
+    }
+
+    private void show(Command command) {
+
+        // check obejct to show
+        switch (command.getParameter()) {
+            case "inventory":
+                // get inventory from player
+                    // show items
+                this.player.getInventory().showItems();
+
+        }
+
     }
 
     // ukoncenie hry
