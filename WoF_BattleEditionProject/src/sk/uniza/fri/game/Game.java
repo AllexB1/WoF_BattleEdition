@@ -87,6 +87,7 @@ public class Game {
                 return this.endGame(command);
             case "show":
                 this.show(command);
+                return false;
             default:
                 return false;
         }

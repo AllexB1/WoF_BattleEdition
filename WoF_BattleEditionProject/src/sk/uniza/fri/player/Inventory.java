@@ -55,7 +55,6 @@ public class Inventory {
         }
     }
 
-
     public IItem[] getUsableItems() {
         return (IItem[])this.inventoryUsable.toArray();
     }
