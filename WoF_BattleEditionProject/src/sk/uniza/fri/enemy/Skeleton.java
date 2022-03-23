@@ -18,7 +18,7 @@ public class Skeleton implements ICreature {
 
     public Skeleton() {
         Random random = new Random();
-        this.health = random.nextFloat(MIN_HP, MAX_HP);
+        this.setHealth(random.nextFloat(MIN_HP, MAX_HP));
         this.damage = ICreature.BASE_DAMAGE;
         this.armor = ICreature.BASE_ARMOR;
     }
@@ -50,5 +50,9 @@ public class Skeleton implements ICreature {
     // check if player is dead
     public boolean isDead() {
         return this.health <= 0;
+    }
+
+    protected void setHealth(float health) {
+        this.health = health;
     }
 }

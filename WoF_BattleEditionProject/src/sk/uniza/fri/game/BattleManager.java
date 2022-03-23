@@ -81,14 +81,14 @@ public class BattleManager {
     // Vypis info po boji
     private void printBattleSummaryAfterRound(ArrayList<ICreature> enemies, int round, Player player) {
         System.out.println("Round " + round + ": ");
-        System.out.println(String.format("[Player] %.2f HP", player.getHealth()));
+        System.out.println(String.format("[%s] %.2f HP", player.getName(), player.getHealth()));
         int index = 0;
         for (ICreature enemy : enemies) {
             if (!enemy.isDead()) {
                 String formatted = String.format("[%s %d] has %.2f HP, ", enemy.getName() , index, enemy.getHealth());
                 System.out.print(formatted);
             } else {
-                System.out.print("[Enemy " + index + "] is dead, ");
+                System.out.print("[" + enemy.getName() + " " + index + "] is dead, ");
             }
             index += 1;
         }

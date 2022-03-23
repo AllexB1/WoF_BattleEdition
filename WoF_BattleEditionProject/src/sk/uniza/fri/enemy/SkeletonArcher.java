@@ -11,6 +11,10 @@ public class SkeletonArcher extends Skeleton {
     private final float damage = 50;
     private int roundCounter = 0;
 
+    public SkeletonArcher() {
+        super.setHealth(20);
+    }
+
     public void doDamage(ICreature creature) {
         if (this.roundCounter > 2) {
             creature.takeDamage(this.damage);
