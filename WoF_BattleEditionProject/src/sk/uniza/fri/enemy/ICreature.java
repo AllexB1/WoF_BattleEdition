@@ -14,4 +14,6 @@ public interface ICreature {
     void doDamage(ICreature creature);
     boolean isDead();
     float getHealth();
+
+    void heal(float healAmount);
 }

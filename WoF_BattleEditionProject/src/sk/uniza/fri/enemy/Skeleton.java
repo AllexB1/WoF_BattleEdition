@@ -12,7 +12,7 @@ public class Skeleton implements ICreature {
     private static final float MIN_HP = 10;
     private static final float MAX_HP = 40;
     private final String name = "Skeleton";
-    private float health;
+    protected float health;
     private float damage;
     private float armor;
 
@@ -26,6 +26,12 @@ public class Skeleton implements ICreature {
     public float getHealth() {
         return this.health;
     }
+
+    @Override
+    public void heal(float healAmount) {
+        
+    }
+
     // TODO
     public void doDamage(ICreature creature) {
         creature.takeDamage(this.damage);

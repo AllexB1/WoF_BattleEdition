@@ -53,6 +53,8 @@ public class BattleManager {
                 }
                 player.doDamage(creature);
                 creature.doDamage(player);
+                // do heal
+
             }
             // end of round
             this.printBattleSummaryAfterRound(enemiesInRoom, round, player);
