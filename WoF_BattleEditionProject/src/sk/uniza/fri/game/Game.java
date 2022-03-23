@@ -1,6 +1,8 @@
 package sk.uniza.fri.game;
 
 import sk.uniza.fri.items.BananOfDamage;
+import sk.uniza.fri.items.HealthPotion;
+import sk.uniza.fri.items.StrawberryOfArmor;
 import sk.uniza.fri.maps.BattleMap;
 import sk.uniza.fri.maps.Room;
 import sk.uniza.fri.player.Player;
@@ -25,7 +27,9 @@ public class Game {
         this.parser = new Parser();
         this.battleManager = new BattleManager();
         this.player = new Player(100, 10, 8);
-        this.player.addItemToInventory(new BananOfDamage());
+       /* this.player.addItemToInventory(new BananOfDamage());
+        this.player.addItemToInventory(new StrawberryOfArmor());
+        this.player.addItemToInventory(new HealthPotion());*/
     }
 
     public void play() {
@@ -37,8 +41,10 @@ public class Game {
             Command command = this.parser.getCommandFromInput();
             isEnd = this.performCommand(command);
             // Start battle if there are enemies in room
-            if (!isEnd && this.currentRoom.getEnemiesInRoom() != null) {
-                isEnd = battleManager.startFight(this.player, this.currentRoom);
+            if (command.getName().equals("go")) {
+                if (!isEnd && this.currentRoom.getEnemiesInRoom() != null) {
+                    isEnd = battleManager.startFight(this.player, this.currentRoom);
+                }
             }
             if (!isEnd) {
                 player.printInfo();

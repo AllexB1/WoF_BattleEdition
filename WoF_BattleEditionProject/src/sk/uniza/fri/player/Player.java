@@ -1,7 +1,6 @@
 package sk.uniza.fri.player;
 
 import sk.uniza.fri.enemy.ICreature;
-import sk.uniza.fri.items.BananOfDamage;
 import sk.uniza.fri.items.IItem;
 import sk.uniza.fri.items.IUsable;
 
@@ -23,6 +22,7 @@ public class Player implements ICreature {
 
     //modifier
     private float damageModifier;
+    private float armorModifier;
 
     public Player(float health, float damage, float armor) {
         this.health = health;
@@ -43,7 +43,7 @@ public class Player implements ICreature {
 
     // Take damage from other creatures of effects
     public void takeDamage(float damage) {
-        float totalDamage = damage - this.armor;
+        float totalDamage = damage - this.armor - this.armorModifier;
 
         if (totalDamage > 0) {
             this.health -= totalDamage;
@@ -80,9 +80,10 @@ public class Player implements ICreature {
         }
     }
 
-    public void addItemToInventory(BananOfDamage bananOfDamage) {
-        if (bananOfDamage != null) {
-            this.inventory.addItem(bananOfDamage);
+    public void addItemToInventory(IItem item) {
+        if (item != null) {
+            this.inventory.addItem(item);
+            System.out.println("Added " + item.getName() + " item to inventory");
         }
     }
 
@@ -92,6 +93,15 @@ public class Player implements ICreature {
 
     public Inventory getInventory() {
         return this.inventory;
+    }
+
+    public void addArmorModifier(float armorModifier) {
+        this.armorModifier = armorModifier;
+    }
+
+    public void resetModifiers() {
+        this.armorModifier = 0;
+        this.damageModifier = 0;
     }
 }
 
