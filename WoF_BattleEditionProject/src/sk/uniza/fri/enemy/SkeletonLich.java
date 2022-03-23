@@ -6,6 +6,7 @@ public class SkeletonLich extends Skeleton implements IHealable {
 
     private int roundCounter = 0;
     private static final float DAMAGE = 50;
+    private final String name = "Lich";
 
     public SkeletonLich () {
         super.health = 20;
@@ -25,10 +26,17 @@ public class SkeletonLich extends Skeleton implements IHealable {
     public void healCreatures(ArrayList<ICreature> creatures) {
         float healAmount = 10;
         for (ICreature creature : creatures) {
+            if (this.equals(creature)) {
+                continue;
+            }
             if (!creature.isDead()) {
                 creature.heal(healAmount);
             }
         }
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
 

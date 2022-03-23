@@ -29,7 +29,7 @@ public class Skeleton implements ICreature {
 
     @Override
     public void heal(float healAmount) {
-        
+        this.health += healAmount;
     }
 
     // TODO
@@ -50,5 +50,9 @@ public class Skeleton implements ICreature {
     // check if player is dead
     public boolean isDead() {
         return this.health <= 0;
+    }
+
+    public String getName() {
+        return name;
     }
 }

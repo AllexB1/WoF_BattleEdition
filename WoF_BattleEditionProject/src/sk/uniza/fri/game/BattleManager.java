@@ -1,6 +1,7 @@
 package sk.uniza.fri.game;
 
 import sk.uniza.fri.enemy.ICreature;
+import sk.uniza.fri.enemy.IHealable;
 import sk.uniza.fri.items.IItem;
 import sk.uniza.fri.items.BananOfDamage;
 import sk.uniza.fri.items.AppleOfHealth;
@@ -54,6 +55,9 @@ public class BattleManager {
                 player.doDamage(creature);
                 creature.doDamage(player);
                 // do heal
+                if (creature instanceof IHealable) {
+                    ((IHealable)creature).healCreatures(enemiesInRoom);
+                }
 
             }
             // end of round
@@ -91,10 +95,10 @@ public class BattleManager {
         int index = 0;
         for (ICreature enemy : enemies) {
             if (!enemy.isDead()) {
-                String formatted = String.format("[Enemy %d] has %.2f HP, ", index, enemy.getHealth());
+                String formatted = String.format("[%s %d] has %.2f HP, ", enemy.getName(), index, enemy.getHealth());
                 System.out.print(formatted);
             } else {
-                System.out.print("[Enemy " + index + "] is dead, ");
+                System.out.print("[" + enemy.getName() + " " + index + "] is dead, ");
             }
             index += 1;
         }

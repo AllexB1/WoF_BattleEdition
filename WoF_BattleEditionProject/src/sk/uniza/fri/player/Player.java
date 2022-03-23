@@ -38,6 +38,11 @@ public class Player implements ICreature {
         return this.health;
     }
 
+    @Override
+    public String getName() {
+        return null;
+    }
+
     public void doDamage(ICreature creature) {
         // TODO
         // calculate damage

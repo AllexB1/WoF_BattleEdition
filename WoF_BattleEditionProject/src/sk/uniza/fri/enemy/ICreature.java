@@ -14,6 +14,7 @@ public interface ICreature {
     void doDamage(ICreature creature);
     boolean isDead();
     float getHealth();
+    String getName();
 
     void heal(float healAmount);
 }
