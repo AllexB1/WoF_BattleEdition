@@ -41,7 +41,7 @@ public class Game {
             Command command = this.parser.getCommandFromInput();
             isEnd = this.performCommand(command);
             // Start battle if there are enemies in room
-            if (command.getName().equals("go")) {
+            if (!command.isUnknown() && command.getName().equals("go")) {
                 if (!isEnd && this.currentRoom.getEnemiesInRoom() != null) {
                     isEnd = battleManager.startFight(this.player, this.currentRoom);
                 }
@@ -56,6 +56,9 @@ public class Game {
                 }
             }
         } while (!isEnd);
+        if (player.isDead()) {
+            System.out.println("YOU DIED!");
+        }
     }
 
     // TODO rework. This is not optimal

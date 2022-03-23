@@ -1,8 +1,8 @@
 package sk.uniza.fri.maps;
 
-import sk.uniza.fri.enemy.Skeleton;
 import sk.uniza.fri.enemy.ICreature;
-import sk.uniza.fri.enemy.SkeletonMage;
+import sk.uniza.fri.enemy.Skeleton;
+import sk.uniza.fri.enemy.SkeletonArcher;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -35,10 +35,16 @@ public class Room {
 
     public void putEnemiesIntoRoom() {
         Random random = new Random();
-        enemiesInRoom = new ArrayList<ICreature>();
-        int numOfEnemies = random.nextInt(1, 5);
-        for (int i = 0; i < numOfEnemies; i++) {
-            enemiesInRoom.add((ICreature)new SkeletonMage());
+        this.enemiesInRoom = new ArrayList<ICreature>();
+        // put skeletons in to room
+        int numOfSkeletons = random.nextInt(1, 5);
+        for (int i = 0; i < numOfSkeletons; i++) {
+            this.enemiesInRoom.add((ICreature)new Skeleton());
+        }
+        // put skeleton archers in to room
+        int numOfSkeletonArchers = random.nextInt(1, 3);
+        for (int i = 0; i < numOfSkeletonArchers; i++) {
+            this.enemiesInRoom.add((ICreature)new SkeletonArcher());
         }
     }
 

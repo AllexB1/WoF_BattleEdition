@@ -26,6 +26,12 @@ public class Skeleton implements ICreature {
     public float getHealth() {
         return this.health;
     }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
     // TODO
     public void doDamage(ICreature creature) {
         creature.takeDamage(this.damage);

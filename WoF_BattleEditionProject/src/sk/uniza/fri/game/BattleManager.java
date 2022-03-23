@@ -63,7 +63,7 @@ public class BattleManager {
     // vrat nahodny predmet
     private IItem getRandomReward() {
         Random rand = new Random();
-        return this.rewards.get(rand.nextInt(0, this.rewards.size() - 1));
+        return this.rewards.get(rand.nextInt(0, this.rewards.size()));
     }
 
     // odstran mrtvych nepriatelov
@@ -85,7 +85,7 @@ public class BattleManager {
         int index = 0;
         for (ICreature enemy : enemies) {
             if (!enemy.isDead()) {
-                String formatted = String.format("[Enemy %d] has %.2f HP, ", index, enemy.getHealth());
+                String formatted = String.format("[%s %d] has %.2f HP, ", enemy.getName() , index, enemy.getHealth());
                 System.out.print(formatted);
             } else {
                 System.out.print("[Enemy " + index + "] is dead, ");

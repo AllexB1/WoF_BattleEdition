@@ -15,6 +15,7 @@ public class Player implements ICreature {
     private float health;
     private float damage;
     private float armor;
+    private String name = "Player";
 
     // Inventory
     //private ArrayList<IItem> inventory = new ArrayList<>();
@@ -33,6 +34,11 @@ public class Player implements ICreature {
     @Override
     public float getHealth() {
         return this.health;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
     }
 
     public void doDamage(ICreature creature) {
