@@ -1,9 +1,11 @@
 package sk.uniza.fri.game;
 
 import sk.uniza.fri.enemy.ICreature;
+import sk.uniza.fri.items.*;
 import sk.uniza.fri.maps.Room;
 import sk.uniza.fri.player.Player;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * 14. 3. 2022 - 12:47
@@ -11,6 +13,15 @@ import java.util.ArrayList;
  * @author Alex-PC
  */
 public class BattleManager {
+
+    private ArrayList<IItem> rewards = new ArrayList<IItem>();
+
+    public BattleManager() {
+        this.rewards.add(new BananOfDamage());
+        this.rewards.add(new AppleOfHealth());
+        this.rewards.add(new StrawberryOfArmor());
+        this.rewards.add(new HealthPotion());
+    }
 
     public boolean startFight(Player player, Room room) {
         ArrayList<ICreature> enemiesInRoom = room.getEnemiesInRoom();
@@ -22,7 +33,10 @@ public class BattleManager {
         System.out.println(" [" + enemiesInRoom.size() + " nepriatelov v miestnosti]");
         int round = 0;
         while (!enemiesInRoom.isEmpty()) {
+            // start of round
             round += 1;
+            player.useItems();
+            // during round
             for (ICreature creature : enemiesInRoom) {
                 if (creature.isDead()) {
                     continue;
@@ -36,12 +50,23 @@ public class BattleManager {
                 player.doDamage(creature);
                 creature.doDamage(player);
             }
+            // end of round
             this.printBattleSummaryAfterRound(enemiesInRoom, round, player);
             enemiesInRoom = this.removeDeadEnemies(enemiesInRoom);
         }
+        // end of fight
+        player.resetModifiers();
+        player.addItemToInventory(this.getRandomReward());
         return player.isDead();
     }
 
+    // vrat nahodny predmet
+    private IItem getRandomReward() {
+        Random rand = new Random();
+        return this.rewards.get(rand.nextInt(0, this.rewards.size() - 1));
+    }
+
+    // odstran mrtvych nepriatelov
     private ArrayList<ICreature> removeDeadEnemies(ArrayList<ICreature> enemiesInRoom) {
         ArrayList<ICreature> enemiesAlive = new ArrayList<ICreature>();
         for (ICreature creature : enemiesInRoom) {
@@ -52,6 +77,8 @@ public class BattleManager {
         return enemiesAlive;
     }
 
+
+    // Vypis info po boji
     private void printBattleSummaryAfterRound(ArrayList<ICreature> enemies, int round, Player player) {
         System.out.println("Round " + round + ": ");
         System.out.println(String.format("[Player] %.2f HP", player.getHealth()));
