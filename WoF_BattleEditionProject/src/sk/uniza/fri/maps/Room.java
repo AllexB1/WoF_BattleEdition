@@ -2,6 +2,7 @@ package sk.uniza.fri.maps;
 
 import sk.uniza.fri.enemy.Skeleton;
 import sk.uniza.fri.enemy.ICreature;
+import sk.uniza.fri.enemy.SkeletonMage;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -37,7 +38,7 @@ public class Room {
         enemiesInRoom = new ArrayList<ICreature>();
         int numOfEnemies = random.nextInt(1, 5);
         for (int i = 0; i < numOfEnemies; i++) {
-            enemiesInRoom.add((ICreature)new Skeleton());
+            enemiesInRoom.add((ICreature)new SkeletonMage());
         }
     }
 
