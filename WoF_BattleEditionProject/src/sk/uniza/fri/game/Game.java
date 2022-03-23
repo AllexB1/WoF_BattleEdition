@@ -94,9 +94,16 @@ public class Game {
             case "show":
                 this.show(command);
                 return false;
+            case "consume":
+                this.consume(command);
+                return false;
             default:
                 return false;
         }
+    }
+
+    private void consume(Command command) {
+        player.consumeItem(command.getParameter());
     }
 
     private void show(Command command) {

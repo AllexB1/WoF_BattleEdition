@@ -1,8 +1,11 @@
 package sk.uniza.fri.player;
 
 import sk.uniza.fri.enemy.ICreature;
+import sk.uniza.fri.items.IConsumable;
 import sk.uniza.fri.items.IItem;
 import sk.uniza.fri.items.IUsable;
+
+import java.util.Locale;
 
 
 /**
@@ -70,6 +73,24 @@ public class Player implements ICreature {
     public void addDamageModifier(float damageModifier) {
         this.damageModifier = damageModifier;
     }
+    public void addArmorModifier(float armorModifier) {
+        this.armorModifier = armorModifier;
+    }
+    public void heal(float healthAdd) {
+        this.health += healthAdd;
+    }
+
+    // Inventory and items
+    public void consumeItem(String itemName) {
+        for (IItem item : this.getInventory().getConsumableItems()) {
+            String itemNameRaw = item.getName().toLowerCase().replace(" ", "");
+            if (itemName.toLowerCase().equals(itemNameRaw)) {
+                ((IConsumable)item).consume(this);
+                System.out.println("Consumed " + item.getName());
+                return;
+            }
+        }
+    }
 
     public void useItems() {
         // TODO
@@ -87,16 +108,8 @@ public class Player implements ICreature {
         }
     }
 
-    public void heal(float healthAdd) {
-        this.health += healthAdd;
-    }
-
     public Inventory getInventory() {
         return this.inventory;
-    }
-
-    public void addArmorModifier(float armorModifier) {
-        this.armorModifier = armorModifier;
     }
 
     public void resetModifiers() {

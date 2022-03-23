@@ -58,6 +58,10 @@ public class Inventory {
     public ArrayList<IItem> getUsableItems() {
         return this.inventoryUsable;
     }
+
+    public ArrayList<IItem> getConsumableItems() {
+        return this.inventoryConsumable;
+    }
 }
 
 

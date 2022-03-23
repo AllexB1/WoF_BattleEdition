@@ -1,7 +1,11 @@
 package sk.uniza.fri.game;
 
 import sk.uniza.fri.enemy.ICreature;
-import sk.uniza.fri.items.*;
+import sk.uniza.fri.items.IItem;
+import sk.uniza.fri.items.BananOfDamage;
+import sk.uniza.fri.items.AppleOfHealth;
+import sk.uniza.fri.items.StrawberryOfArmor;
+import sk.uniza.fri.items.HealthPotion;
 import sk.uniza.fri.maps.Room;
 import sk.uniza.fri.player.Player;
 import java.util.ArrayList;
@@ -14,7 +18,7 @@ import java.util.Random;
  */
 public class BattleManager {
 
-    private ArrayList<IItem> rewards = new ArrayList<IItem>();
+    private final ArrayList<IItem> rewards = new ArrayList<IItem>();
 
     public BattleManager() {
         this.rewards.add(new BananOfDamage());
@@ -63,7 +67,7 @@ public class BattleManager {
     // vrat nahodny predmet
     private IItem getRandomReward() {
         Random rand = new Random();
-        return this.rewards.get(rand.nextInt(0, this.rewards.size() - 1));
+        return this.rewards.get(rand.nextInt(0, this.rewards.size()));
     }
 
     // odstran mrtvych nepriatelov
