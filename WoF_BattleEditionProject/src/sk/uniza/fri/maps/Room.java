@@ -42,7 +42,7 @@ public class Room {
             this.enemiesInRoom.add((ICreature)new Skeleton());
         }
 
-        int numOfLiches = random.nextInt(0, 1);
+        int numOfLiches = random.nextInt(1, 2);
         for (int i = 0; i < numOfLiches; i++) {
             this.enemiesInRoom.add((ICreature)new SkeletonLich());
         }
