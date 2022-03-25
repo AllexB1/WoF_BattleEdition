@@ -16,10 +16,12 @@ public class BattleMap {
         Room mainHall = new Room("Hlavna hala");
         Room darkRoom = new Room("Temna miestnost");
         Room bossRoom = new Room("Vstupil si do temnej miestnosti. Vidies len svetlo z polozahasenzych fakiel, ktore osvetluju zeleneho orka v ciernom brneni.");
+        TrapRoom trapRoom = new TrapRoom("Parser boss");
 
         // inicializacia Roomi = nastavenie vychodov
         camp.setExits(kitchen, mainHall, darkRoom);
-        kitchen.setExits(null, null, bossRoom);
+        kitchen.setExits(null, trapRoom, bossRoom);
+        trapRoom.setExits(null, bossRoom, null);
         mainHall.setExits(kitchen, bossRoom, darkRoom);
         darkRoom.setExits(bossRoom, null, null);
         bossRoom.setExits(null, null, null);
