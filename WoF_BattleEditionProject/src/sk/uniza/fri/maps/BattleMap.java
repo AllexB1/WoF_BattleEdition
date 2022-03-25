@@ -19,7 +19,6 @@ public class BattleMap {
         TrappedRoom trap = new TrappedRoom("a pucujes cvaknutie, smrst sipov vyleti tvojim smerom........");
         // inicializacia Roomi = nastavenie vychodov
         camp.setExits(kitchen, mainHall, darkRoom);
-
         kitchen.setExits(null, trap, bossRoom);
         trap.setExits(bossRoom, null, null);
         mainHall.setExits(kitchen, bossRoom, darkRoom);

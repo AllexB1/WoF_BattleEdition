@@ -9,6 +9,7 @@ public class Inventory {
 
     private ArrayList<IItem> inventoryUsable;
     private ArrayList<IItem> inventoryConsumable;
+    private int goldCoins = 0;
 
     public Inventory() {
         this.inventoryConsumable = new ArrayList<IItem>();
@@ -39,6 +40,19 @@ public class Inventory {
 
         if (this.inventoryConsumable.contains(item)) {
             this.inventoryConsumable.remove(item);
+        }
+    }
+
+    public void addGoldCoins(int amount) {
+        this.goldCoins += amount;
+    }
+
+    public boolean removeGoldCoins(int amount) {
+        if ((this.goldCoins - amount) >= 0) {
+            this.goldCoins -= amount;
+            return true;
+        } else {
+            return false;
         }
     }
 
