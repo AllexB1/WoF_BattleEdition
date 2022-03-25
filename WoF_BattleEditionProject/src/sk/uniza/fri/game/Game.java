@@ -5,6 +5,7 @@ import sk.uniza.fri.items.HealthPotion;
 import sk.uniza.fri.items.StrawberryOfArmor;
 import sk.uniza.fri.maps.BattleMap;
 import sk.uniza.fri.maps.Room;
+import sk.uniza.fri.maps.TrappedRoom;
 import sk.uniza.fri.player.Player;
 import sk.uniza.fri.userInteraction.Command;
 import sk.uniza.fri.userInteraction.Parser;
@@ -42,13 +43,18 @@ public class Game {
             isEnd = this.performCommand(command);
             // Start battle if there are enemies in room
             if (!command.isUnknown() && command.getName().equals("go")) {
-                if (!isEnd && this.currentRoom.getEnemiesInRoom() != null) {
-                    isEnd = battleManager.startFight(this.player, this.currentRoom);
+                if(isEnd) {
+                    break;
+                }
+                if (this.currentRoom.getEnemiesInRoom() != null) {
+                    isEnd = this.battleManager.startFight(this.player, this.currentRoom);
+                } else if (this.currentRoom instanceof TrappedRoom) {
+                    ((TrappedRoom)this.currentRoom).triggerTrap(this.player);
                 }
             }
             if (!isEnd) {
-                player.printInfo();
-                if (!this.isLastRoom(currentRoom)) {
+                this.player.printInfo();
+                if (!this.isLastRoom(this.currentRoom)) {
                     this.printRooms();
                 } else {
                     System.out.println("YOU WON!");
@@ -56,7 +62,7 @@ public class Game {
                 }
             }
         } while (!isEnd);
-        if (player.isDead()) {
+        if (this.player.isDead()) {
             System.out.println("YOU DIED!");
         }
     }
